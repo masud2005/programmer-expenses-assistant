@@ -22,13 +22,13 @@ document.getElementById('calculate-btn').addEventListener('click', function(){
     if(isNaN(income) || income <= 0){
         incomeError.classList.remove('hidden')
         return;
-    }else if(isNaN(software)){
+    }else if(isNaN(software) || software < 0){
         softwareError.classList.remove('hidden');
         return;
-    }else if(isNaN(courses)){
+    }else if(isNaN(courses) || courses < 0){
         coursesError.classList.remove('hidden');
         return;
-    }else if(isNaN(internet)){
+    }else if(isNaN(internet) || internet < 0){
         internetError.classList.remove('hidden');
         return;
     }
@@ -50,7 +50,7 @@ document.getElementById('calculate-btn').addEventListener('click', function(){
 
         // Validation Savings Field
         const savingsError = document.getElementById('savings-error');
-        if(isNaN(savingsAmount) || savingsAmount > 100){
+        if(isNaN(savingsAmount) || savingsAmount < 0 || savingsAmount > 100){
             savingsError.classList.remove('hidden');
             return;
         }else{
