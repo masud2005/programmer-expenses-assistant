@@ -1,4 +1,17 @@
 
+// Saving Money Validation
+// const savingsInput = document.getElementById('savings');
+// const savingsError = document.getElementById('savings-error');
+// savingsInput.addEventListener('input', function(){
+//     const savingsValue = parseFloat(savingsInput.value);
+//     // console.log(savingsValue);
+//     if(isNaN(savingsValue) || savingsValue < 0 || savingsValue > 100){
+//         savingsError.classList.remove('hidden');
+//         return;
+//     }else{
+//         savingsError.classList.add('hidden');
+//     }
+// })
 
 // Calculate  Programmer Expenses Assistant Money
 document.getElementById('calculate-btn').addEventListener('click', function(){
@@ -7,6 +20,32 @@ document.getElementById('calculate-btn').addEventListener('click', function(){
     const courses = getInputFieldValueById('courses');
     const internet = getInputFieldValueById('internet');
     // console.log({income, software, courses, internet});
+
+    // Reset error messages
+    const errorMessages = document.querySelectorAll('.text-red-500');
+    for(const massage of errorMessages){
+        massage.classList.add('hidden');
+    }
+
+    // Validation Input Field
+    const incomeError = document.getElementById('income-error');
+    const softwareError = document.getElementById('software-error');
+    const coursesError = document.getElementById('courses-error');
+    const internetError = document.getElementById('internet-error');
+
+    if(isNaN(income) || income <= 0){
+        incomeError.classList.remove('hidden')
+        return;
+    }else if(isNaN(software)){
+        softwareError.classList.remove('hidden');
+        return;
+    }else if(isNaN(courses)){
+        coursesError.classList.remove('hidden');
+        return;
+    }else if(isNaN(internet)){
+        internetError.classList.remove('hidden');
+        return;
+    }
 
     // Calculate Total Expense
     const totalExpense = software + courses + internet;
@@ -20,9 +59,18 @@ document.getElementById('calculate-btn').addEventListener('click', function(){
 
     // Calculate Saving Amount & Remaining Balance
     document.getElementById('calculate-savings').addEventListener('click', function(){
-        
-        // Calculate Saving Amount
         const savingsAmount = getInputFieldValueById('savings');
+        // console.log(savingsAmount);
+
+        // Validation Savings Field
+        const savingsError = document.getElementById('savings-error');
+        if(isNaN(savingsAmount) || savingsAmount > 100){
+            savingsError.classList.remove('hidden');
+            return;
+        }else{
+            savingsError.classList.add('hidden');
+        }
+        // Calculate Saving Amount
         const totalSavingsAmount = (income * savingsAmount) / 100;
         const savings = document.getElementById('savings-amount');
         savings.innerText = totalSavingsAmount.toFixed(2);
@@ -56,7 +104,7 @@ document.getElementById('calculate-btn').addEventListener('click', function(){
 const historyTab = document.getElementById('history-tab')
 const assistantTab = document.getElementById('assistant-tab')
 
-// History Tab
+// Show History Tab & Hide Assistant Tab
 historyTab.addEventListener('click', function(){
     historyTab.classList.add('bg-gradient-to-r', 'from-blue-500', 'to-purple-600', 'text-white');
     assistantTab.classList.remove('bg-gradient-to-r', 'from-blue-500', 'to-purple-600', 'text-white');
@@ -65,12 +113,16 @@ historyTab.addEventListener('click', function(){
     
     //Show History Section
     const historySection = document.getElementById('history-section');
-    historySection.classList.remove('hidden')
+    historySection.classList.remove('hidden');
 })
 
-// Assistant Tab
+// Show Assistant Tab & Hide History Tab
 assistantTab.addEventListener('click', function(){
     assistantTab.classList.add('bg-gradient-to-r', 'from-blue-500', 'to-purple-600', 'text-white');
     historyTab.classList.remove('bg-gradient-to-r', 'from-blue-500', 'to-purple-600', 'text-white');
     document.getElementById('expense-form').classList.remove('hidden');
+
+    // Hide History Section
+    const historySection = document.getElementById('history-section');
+    historySection.classList.add('hidden');
 })

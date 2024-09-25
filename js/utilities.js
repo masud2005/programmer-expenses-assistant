@@ -10,6 +10,5 @@ function getInputFieldValueById(id){
 // All Text Field Return
 function getTextFieldById(id){
     const textField = document.getElementById(id);
-    // const textNumber = parseFloat(textFieldValue);
     return textField;
 }
