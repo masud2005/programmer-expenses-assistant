@@ -1,18 +1,4 @@
 
-// Saving Money Validation
-// const savingsInput = document.getElementById('savings');
-// const savingsError = document.getElementById('savings-error');
-// savingsInput.addEventListener('input', function(){
-//     const savingsValue = parseFloat(savingsInput.value);
-//     // console.log(savingsValue);
-//     if(isNaN(savingsValue) || savingsValue < 0 || savingsValue > 100){
-//         savingsError.classList.remove('hidden');
-//         return;
-//     }else{
-//         savingsError.classList.add('hidden');
-//     }
-// })
-
 // Calculate  Programmer Expenses Assistant Money
 document.getElementById('calculate-btn').addEventListener('click', function(){
     const income = getInputFieldValueById('income');
